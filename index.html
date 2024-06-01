@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grand River Transit</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            background-image: url('https://www.grt.ca/en/about-grt/resources/GRT_8695-ION-train-Central-Station-1500x600px.jpg'); /* Path to backgound image */
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: bottom;
+        }
+
+        header {
+            background-color: #007bff;
+            color: white;
+            padding: 10px 0;
+            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        header img.logo {
+            position: absolute;
+            left: 20px;
+            top: 10px;
+            width: 50px;
+            height: 50px;
+        }
+
+        nav ul {
+            list-style: none;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            margin: 0;
+        }
+
+        nav ul li {
+            margin: 0 15px;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        footer {
+            background-color: #007bff;
+            color: white;
+            text-align: center;
+            padding: 10px 0;
+            position: fixed;
+            width: 100%;
+            bottom: 0;
+        }
+
+        .container {
+            padding: 20px;
+            background-color: rgba(255, 255, 255, 0.9); /* transparent background */
+            margin: 20px;
+            border-radius: 10px;
+            display: none;
+        }
+
+        .active {
+            display: block;
+        }
+
+        .login-container {
+            background-color: #ffffff;
+            padding: 30px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+            border-radius: 10px;
+            width: 320px;
+            text-align: center;
+            margin: 50px auto;
+        }
+
+        .bus-smiley {
+            width: 80px;
+            height: 80px;
+            margin-bottom: 20px;
+        }
+
+        .login-container input[type="text"],
+        .login-container input[type="password"] {
+            width: calc(100% - 20px);
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .login-container button {
+            width: calc(100% - 20px);
+            padding: 10px;
+            background-color: #007bff;
+            border: none;
+            border-radius: 5px;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        .login-container button:hover {
+            background-color: #0056b3;
+        }
+
+        form label {
+            display: block;
+            margin: 10px 0 5px;
+        }
+
+        form input,
+        form select {
+            width: calc(100% - 20px);
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        form button {
+            width: calc(100% - 20px);
+            padding: 10px;
+            background-color: #007bff;
+            border: none;
+            border-radius: 5px;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        form button:hover {
+            background-color: #0056b3;
+        }
+
+        .scroll-down-btn {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: #007bff;
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            border: none;
+            cursor: pointer;
+            display: none;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .scroll-down-btn:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRSItVagF6MbVNzlqENNVqTFFwXv0ouZwRdGg&s" alt="Bus Smiley" class="logo">
+        <h1>Grand River Transit</h1>
+        <nav>
+            <ul>
+                <li><a onclick="showPage('home')">Home</a></li>
+                <li><a onclick="showPage('services')">Services</a></li>
+                <li><a onclick="showPage('login')">Online Booking</a></li>
+                <li><a onclick="showPage('about')">About Us</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div id="home" class="container active">
+        <h2>Welcome to Grand River Transit</h2>
+        <p>Your reliable partner for public transportation. Explore our services and book your rides online.</p>
+        <button class="scroll-down-btn" onclick="scrollDown()">↓</button>
+    </div>
+
+    <div id="services" class="container">
+        <h2>Our Services</h2>
+        <p>At Grand River Transit, we offer a range of services to meet your transportation needs:</p>
+        <ul>
+            <li>Regular Bus Services</li>
+            <li>Express Routes</li>
+            <li>Accessibility Services</li>
+            <li>Special Event Transportation</li>
+        </ul>
+        <button class="scroll-down-btn" onclick="scrollDown()">↓</button>
+    </div>
+
+    <div id="login" class="container">
+        <h2>Login</h2>
+        <div class="login-container">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRSItVagF6MbVNzlqENNVqTFFwXv0ouZwRdGg&s" alt="Bus Smiley" class="bus-smiley">
+            <form onsubmit="return login()">
+                <input type="text" id="username" placeholder="Username" required>
+                <input type="password" id="password" placeholder="Password" required>
+                <button type="submit">Login</button>
+            </form>
+        </div>
+        <button class="scroll-down-btn" onclick="scrollDown()">↓</button>
+    </div>
+
+    <div id="booking" class="container">
+        <h2>GRT Integrated Booking Platform</h2>
+        <p>Book your rides conveniently online. Please fill out the form below:</p>
+        <form action="javascript:void(0);" method="POST" onsubmit="return confirmBooking()">
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" required>
+            
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required>
+            
+            <label for="route">Route:</label>
+            <select id="route" name="route" required>
+                <option value="" disabled selected>Select a route</option>
+                <option value="Route 1">Route 1: Downtown to Uptown</option>
+                <option value="Route 2">Route 2: East Side to West Side</option>
+                <option value="Route 3">Route 3: North End to South End</option>
+                <option value="Route 4">Route 4: City Center Loop</option>
+            </select>
+
+            <label for="seatPreference">Seat Preference:</label>
+            <select id="seatPreference" name="seatPreference" required>
+                <option value="" disabled selected>Select a preference</option>
+                <option value="Window">Window</option>
+                <option value="Aisle">Aisle</option>
+            </select>
+            
+            <label for="date">Date:</label>
+            <input type="date" id="date" name="date" required>
+            
+            <button type="submit">Confirm Booking</button>
+        </form>
+        <button class="scroll-down-btn" onclick="scrollDown()">↓</button>
+    </div>
+
+    <div id="confirmation" class="container">
+        <h2>Thank You for Choosing GRT Integrated Booking Platform</h2>
+        <p>Booking successfully completed. Happy Commute!</p>
+        <p><strong>Name:</strong> <span id="confirmName"></span></p>
+        <p><strong>Email:</strong> <span id="confirmEmail"></span></p>
+        <p><strong>Route:</strong> <span id="confirmRoute"></span></p>
+        <p><strong>Seat Preference:</strong> <span id="confirmSeatPreference"></span></p>
+        <p><strong>Date:</strong> <span id="confirmDate"></span></p>
+        <button class="scroll-down-btn" onclick="scrollDown()">↓</button>
+    </div>
+
+    <div id="about" class="container">
+        <h2>About Us</h2>
+        <p>Grand River Transit is dedicated to providing safe, reliable, and efficient public transportation services. Our mission is to connect communities and improve the quality of life for residents through accessible and sustainable transit options.</p>
+        <img src="images/bus-smiley.png" alt="Bus Smiley" class="bus-smiley">
+        <button class="scroll-down-btn" onclick="scrollDown()">↓</button>
+    </div>
+
+    <footer>
+        <p>&copy; 2024 Grand River Transit. All rights reserved.</p>
+    </footer>
+
+    <script>
+        function showPage(pageId) {
+            var pages = document.querySelectorAll('.container');
+            pages.forEach(function(page) {
+                page.classList.remove('active');
+            });
+            document.getElementById(pageId).classList.add('active');
+        }
+
+        function login() {
+            var username = document.getElementById('username').value;
+            var password = document.getElementById('password').value;
+
+            if (username === 'Admin' && password === '123') {
+                showPage('booking');
+                return false; // Prevent form submission
+            } else {
+                alert('Invalid username or password');
+                return false; // Prevent form submission
+            }
+        }
+
+        function scrollDown() {
+            window.scrollBy({
+                top: window.innerHeight,
+                behavior: 'smooth'
+            });
+        }
+
+        function confirmBooking() {
+            var name = document.getElementById('name').value;
+            var email = document.getElementById('email').value;
+            var route = document.getElementById('route').value;
+            var seatPreference = document.getElementById('seatPreference').value;
+            var date = document.getElementById('date').value;
+
+            document.getElementById('confirmName').innerText = name;
+            document.getElementById('confirmEmail').innerText = email;
+            document.getElementById('confirmRoute').innerText = route;
+            document.getElementById('confirmSeatPreference').innerText = seatPreference;
+            document.getElementById('confirmDate').innerText = date;
+
+            showPage('confirmation');
+            return false; // Prevent form submission
+        }
+    </script>
+</body>
+</html>
